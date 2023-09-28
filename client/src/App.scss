@@ -79,7 +79,6 @@ body {
   font-weight: bold;
 }
 
-
 .form__input {
   width: inherit;
   font-size: 18px;
@@ -118,6 +117,9 @@ body {
 
 .entry {
   margin-top: 50px;
+  background-color: #d7f8ff;
+  padding: 20px;
+  border-radius: 12px;
 
   .cont-titulo {
     display: flex;
@@ -133,6 +135,7 @@ body {
 .entry__title {
   display: inline;
   font-size: 18px;
+  color: #18c1e1;
 }
 
 .entry__date {

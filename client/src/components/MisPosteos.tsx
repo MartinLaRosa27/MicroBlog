@@ -16,8 +16,6 @@ function MisPosteos() {
 
   return (
     <section style={{ minHeight: "100vh" }}>
-      <h1>{todosPosteos}</h1>
-
       {posteos.map((posteo: any, i: number) => {
         return (
           <article className="entry" key={i}>
