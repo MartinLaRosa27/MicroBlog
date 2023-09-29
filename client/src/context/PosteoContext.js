@@ -42,8 +42,23 @@ export const PosteoContext = ({ children }) => {
     return result;
   };
 
+  const editarPosteo = async (id, values) => {
+    let result = false;
+    await axios
+      .put(`${process.env.REACT_APP_BACKEND_URL}/editar-posteo/${id}`, values)
+      .then((res) => {
+        result = true;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return result;
+  };
+
   return (
-    <Context.Provider value={{ todosPosteos, guardarPosteo, eliminarPosteo }}>
+    <Context.Provider
+      value={{ todosPosteos, guardarPosteo, eliminarPosteo, editarPosteo }}
+    >
       {children}
     </Context.Provider>
   );

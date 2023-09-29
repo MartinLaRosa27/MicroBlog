@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { usePosteoContext } from "../context/PosteoContext";
 import { dateFormat } from "../helpers/dateFormat";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { useHistory } from "react-router-dom";
 
 function MisPosteos() {
+  const history = useHistory();
   const { todosPosteos, eliminarPosteo } = usePosteoContext();
   const [posteos, setPosteos] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -29,6 +31,10 @@ function MisPosteos() {
     }
   };
 
+  const handleClickModificar = (id: any) => {
+    history.push(`/editar-posteo/${id}`);
+  };
+
   return (
     <section style={{ minHeight: "100vh" }}>
       {posteos.length > 0 ? (
@@ -45,7 +51,9 @@ function MisPosteos() {
                       />
                     </span>{" "}
                     <span className="edit__btn">
-                      <AiFillEdit />
+                      <AiFillEdit
+                        onClick={() => handleClickModificar(posteo.id)}
+                      />
                     </span>
                   </h2>
                   <time className="entry__date">

@@ -39,9 +39,10 @@ def editarPosteo(id):
         try:
             data = request.get_json()
             contenido = data['contenido']
+            titulo = data['titulo']
             cur = mysql.connection.cursor()
             cur.execute(
-                "UPDATE posteos SET contenido = (%s) WHERE id = (%s);", (contenido, id))
+                "UPDATE posteos SET contenido = (%s), titulo = (%s) WHERE id = (%s);", (contenido, titulo, id))
             mysql.connection.commit()
             return jsonify({"result": "success"})
         except:
