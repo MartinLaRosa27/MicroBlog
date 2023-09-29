@@ -214,6 +214,7 @@ form {
     transition: 0.3s;
   }
 }
+
 .delete__btn {
   color: red;
   margin: 0 10px 0;
@@ -221,4 +222,76 @@ form {
 
 .edit__btn {
   color: blueviolet;
+}
+
+.login {
+  min-height: 100vh;
+
+  h1,
+  h2 {
+    color: #3cd0ff;
+    text-align: center;
+  }
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .login-form {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+    }
+
+    .btn-cont {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      small {
+        cursor: pointer;
+        margin-top: 10px;
+
+        &:hover {
+          transition: 0.3s;
+          color: blue;
+        }
+      }
+    }
+  }
 }
