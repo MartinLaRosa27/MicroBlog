@@ -24,10 +24,10 @@ def guardarPosteo():
         try:
             data = request.get_json()
             contenido = data['contenido']
+            titulo = data['titulo']
             cur = mysql.connection.cursor()
             cur.execute(
-                "INSERT INTO posteos (contenido) VALUES (%s);", (contenido))
-            print(contenido)
+                "INSERT INTO posteos (contenido, titulo) VALUES (%s, %s);", (contenido, titulo))
             mysql.connection.commit()
             return jsonify({"result": "success"})
         except:
@@ -42,7 +42,6 @@ def editarPosteo(id):
             cur = mysql.connection.cursor()
             cur.execute(
                 "UPDATE posteos SET contenido = (%s) WHERE id = (%s);", (contenido, id))
-            print(contenido)
             mysql.connection.commit()
             return jsonify({"result": "success"})
         except:

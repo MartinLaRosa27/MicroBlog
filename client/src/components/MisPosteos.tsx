@@ -16,19 +16,25 @@ function MisPosteos() {
 
   return (
     <section style={{ minHeight: "100vh" }}>
-      {posteos.map((posteo: any, i: number) => {
-        return (
-          <article className="entry" key={i}>
-            <div className="cont-titulo">
-              <h2 className="entry__title">{posteo.titulo}</h2>
-              <time className="entry__date">
-                • {dateFormat(posteo.updated_at)}
-              </time>
-            </div>
-            <p className="entry__content">{posteo.contenido}</p>
-          </article>
-        );
-      })}
+      {posteos.length > 0 ? (
+        <>
+          {posteos.map((posteo: any, i: number) => {
+            return (
+              <article className="entry" key={i}>
+                <div className="cont-titulo">
+                  <h2 className="entry__title">{posteo.titulo}</h2>
+                  <time className="entry__date">
+                    • {dateFormat(posteo.updated_at)}
+                  </time>
+                </div>
+                <p className="entry__content">{posteo.contenido}</p>
+              </article>
+            );
+          })}
+        </>
+      ) : (
+        <h3 className="sin__posteo">No se encuentran posteos registrados</h3>
+      )}
     </section>
   );
 }
