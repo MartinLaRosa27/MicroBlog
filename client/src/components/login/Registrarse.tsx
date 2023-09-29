@@ -1,57 +1,89 @@
 import { useState } from "react";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 interface Props {
   setShowIniciar: any;
 }
 
 function Registrarse({ setShowIniciar }: Props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleEmailChange = (e: any) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e: any) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
-
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Registrarse</h2>
-        <div className="form-group">
-          <label htmlFor="email">Correo Electrónico:</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Ingresa tu correo"
-            value={email}
-            onChange={handleEmailChange}
-          />
-        </div>
-        <div className="form-group" style={{ margin: "25px 0" }}>
-          <label htmlFor="password">Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Ingresa tu contraseña"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+          passwordAux: "",
+        }}
+        onSubmit={(value) => {
+          console.log(value);
+        }}
+        validationSchema={Yup.object({
+          email: Yup.string().required("El email es requerido."),
+          password: Yup.string()
+            .required("La contraseña es requerida.")
+            .min(8, "La contraseña debe tener más de 8 caracteres.")
+            .oneOf(
+              [Yup.ref("passwordAux")],
+              "Las contraseñas ingresadas no coinciden."
+            ),
+        })}
+      >
+        {(formikProps) => (
+          <Form className="login-form">
+            <h2>Registrarse</h2>
+            <div className="form-group">
+              <label>Correo Electrónico:</label>
+              <Field
+                as="input"
+                type="email"
+                name="email"
+                placeholder="Ingresa correo"
+              />
+            </div>
+            <div className="form-group" style={{ margin: "25px 0" }}>
+              <label>Contraseña:</label>
+              <Field
+                as="input"
+                type="password"
+                name="password"
+                placeholder="Ingresa contraseña"
+              />
+            </div>
+            <div className="form-group" style={{ margin: "25px 0" }}>
+              <label>Contraseña Nuevamente:</label>
+              <Field
+                as="input"
+                type="password"
+                name="passwordAux"
+                placeholder="Ingresa contraseña nuevamente"
+              />
+            </div>
 
-        <div className="btn-cont">
-          <button type="submit">Registrarse</button>
-          <small onClick={() => setShowIniciar(true)}>Iniciar sesión</small>
-        </div>
-      </form>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "center",
+              }}
+            >
+              <ErrorMessage name="email">
+                {(msg) => <small className="text-danger">{msg}</small>}
+              </ErrorMessage>
+              <ErrorMessage name="password">
+                {(msg) => <small className="text-danger">{msg}</small>}
+              </ErrorMessage>
+            </div>
+
+            <div className="btn-cont">
+              <button type="submit" disabled={formikProps.isSubmitting}>
+                Registrarse
+              </button>
+              <small onClick={() => setShowIniciar(true)}>Iniciar sesión</small>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

@@ -11,6 +11,7 @@ function NuevoPosteo() {
     <section style={{ minHeight: "100vh" }}>
       <Formik
         initialValues={{
+          titulo: "",
           contenido: "",
         }}
         onSubmit={(value) => {
