@@ -1,7 +1,12 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { usePosteoContext } from "../context/PosteoContext";
+import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
 function NuevoPosteo() {
+  const history = useHistory();
+  const { guardarPosteo } = usePosteoContext();
+
   return (
     <section style={{ minHeight: "100vh" }}>
       <Formik
@@ -9,7 +14,9 @@ function NuevoPosteo() {
           contenido: "",
         }}
         onSubmit={(value) => {
-          console.log(value);
+          if (guardarPosteo(value)) {
+            history.push("/");
+          }
         }}
         validationSchema={Yup.object({
           contenido: Yup.string()

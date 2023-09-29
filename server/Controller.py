@@ -7,7 +7,7 @@ def todosPosteos():
         try:
             cur = mysql.connection.cursor()
             cur.execute(
-                "SELECT id, contenido, created_at, updated_at, titulo FROM posteos;")
+                "SELECT id, contenido, created_at, updated_at, titulo FROM posteos ORDER BY updated_at DESC;")
             data = cur.fetchall()
             posteos = []
             for row in data:

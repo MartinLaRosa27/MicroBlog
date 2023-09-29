@@ -4,20 +4,36 @@ const Context = createContext();
 
 export const PosteoContext = ({ children }) => {
   const todosPosteos = async () => {
-    let values = [];
+    let result = [];
     await axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/todos-posteos`)
       .then((res) => {
-        values = res.data.posteos;
+        result = res.data.posteos;
       })
       .catch((e) => {
         console.log(e);
       });
-    return values;
+    return result;
+  };
+
+  const guardarPosteo = async (values) => {
+    let result = false;
+    await axios
+      .post(`${process.env.REACT_APP_BACKEND_URL}/guardar-posteo`, values)
+      .then((res) => {
+        alert("Posteo publicado correctamente");
+        result = true;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return result;
   };
 
   return (
-    <Context.Provider value={{ todosPosteos }}>{children}</Context.Provider>
+    <Context.Provider value={{ todosPosteos, guardarPosteo }}>
+      {children}
+    </Context.Provider>
   );
 };
 
