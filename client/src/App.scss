@@ -204,3 +204,21 @@ form {
   text-align: center;
   color: #3cd0ff;
 }
+
+.delete__btn,
+.edit__btn {
+  cursor: pointer;
+
+  &:hover {
+    font-size: 1.4rem;
+    transition: 0.3s;
+  }
+}
+.delete__btn {
+  color: red;
+  margin: 0 10px 0;
+}
+
+.edit__btn {
+  color: blueviolet;
+}

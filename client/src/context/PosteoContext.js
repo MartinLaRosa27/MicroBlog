@@ -21,7 +21,19 @@ export const PosteoContext = ({ children }) => {
     await axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/guardar-posteo`, values)
       .then((res) => {
-        alert("Posteo publicado correctamente");
+        result = true;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return result;
+  };
+
+  const eliminarPosteo = async (id) => {
+    let result = false;
+    await axios
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/eliminar-posteo/${id}`)
+      .then((res) => {
         result = true;
       })
       .catch((e) => {
@@ -31,7 +43,7 @@ export const PosteoContext = ({ children }) => {
   };
 
   return (
-    <Context.Provider value={{ todosPosteos, guardarPosteo }}>
+    <Context.Provider value={{ todosPosteos, guardarPosteo, eliminarPosteo }}>
       {children}
     </Context.Provider>
   );

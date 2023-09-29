@@ -15,6 +15,7 @@ function NuevoPosteo() {
         }}
         onSubmit={(value) => {
           if (guardarPosteo(value)) {
+            alert("Posteo publicado correctamente");
             history.push("/");
           }
         }}
