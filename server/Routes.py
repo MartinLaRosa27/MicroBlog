@@ -1,7 +1,9 @@
 from Connection import app
-from Controller import *
+from controllers.PosteosController import *
+from controllers.UsersController import *
 
 
+# routes-posteos:
 @app.route("/todos-posteos", methods=["GET"])
 def call():
     return todosPosteos()
@@ -20,3 +22,10 @@ def callEditarPosteo(id):
 @app.route("/eliminar-posteo/<id>", methods=["DELETE"])
 def callEliminarPosteo(id):
     return eliminarPosteo(id)
+
+
+# routes-user:
+
+@app.route("/guardar-user", methods=["POST"])
+def callGuardarUser():
+    return guardarUser()
