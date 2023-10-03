@@ -29,3 +29,8 @@ def callEliminarPosteo(id):
 @app.route("/guardar-user", methods=["POST"])
 def callGuardarUser():
     return guardarUser()
+
+
+@app.route("/autenticacion-user", methods=["POST"])
+def callAutenticacionUser():
+    return autenticacionUser()
