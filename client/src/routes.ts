@@ -7,17 +7,21 @@ export const routes = [
   {
     path: "/",
     component: MisPosteos,
+    isLoged: true,
   },
   {
     path: "/nuevo-posteo",
     component: NuevoPosteo,
+    isLoged: true,
   },
   {
     path: "/editar-posteo/:id",
     component: EditarPosteo,
+    isLoged: true,
   },
   {
     path: "/login",
     component: Login,
+    isLoged: false,
   },
 ];

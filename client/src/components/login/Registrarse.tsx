@@ -19,8 +19,8 @@ function Registrarse({ setShowIniciar }: Props) {
           password: "",
           passwordAux: "",
         }}
-        onSubmit={(value) => {
-          if (guardarUser(value)) {
+        onSubmit={async (value) => {
+          if (await guardarUser(value)) {
             alert("Usuario registrado correctamente");
             history.push("/");
           }

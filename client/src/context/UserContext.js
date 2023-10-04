@@ -8,7 +8,9 @@ export const UserContext = ({ children }) => {
     await axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/guardar-user`, values)
       .then((res) => {
-        result = true;
+        if (res.data.result == "success") {
+          result = true;
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -16,8 +18,25 @@ export const UserContext = ({ children }) => {
     return result;
   };
 
+  const autenticacionUser = async (values) => {
+    let token = false;
+    await axios
+      .post(`${process.env.REACT_APP_BACKEND_URL}/autenticacion-user`, values)
+      .then((res) => {
+        if (res.data.result == "success") {
+          token = res.data.token;
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return token;
+  };
+
   return (
-    <Context.Provider value={{ guardarUser }}>{children}</Context.Provider>
+    <Context.Provider value={{ guardarUser, autenticacionUser }}>
+      {children}
+    </Context.Provider>
   );
 };
 

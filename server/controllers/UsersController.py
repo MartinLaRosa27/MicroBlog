@@ -26,21 +26,17 @@ def autenticacionUser():
             email = data['email']
             password = data['password']
             hashPassword = ""
-
             cur = mysql.connection.cursor()
             cur.execute(
                 "SELECT id, email, password FROM users WHERE email = %s;", [email])
             data = cur.fetchall()
-
             user = {}
             for row in data:
                 user = {'id': row[0], 'email': row[1]}
                 hashPassword = row[2]
-
             if (user):
                 if not (pbkdf2_sha256.verify(password, hashPassword)):
                     raise ValueError("Usuario no registrado")
-
             encoded_jwt = jwt.encode(user, 'secret', algorithm='HS256')
             return jsonify({"result": "success", "token": encoded_jwt})
         except:

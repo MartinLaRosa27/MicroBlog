@@ -1,3 +1,4 @@
+import { useUserContext } from "../../context/UserContext";
 import { useState } from "react";
 
 interface Props {
@@ -5,6 +6,7 @@ interface Props {
 }
 
 function Iniciar({ setShowIniciar }: Props) {
+  const { autenticacionUser } = useUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,10 +18,13 @@ function Iniciar({ setShowIniciar }: Props) {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+    if (await autenticacionUser({ email, password })) {
+      alert("ok");
+    } else {
+      alert("Las credenciales ingresadas no coinciden");
+    }
   };
 
   return (
