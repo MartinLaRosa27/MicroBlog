@@ -9,7 +9,7 @@ import { UserContext } from "./context/UserContext";
 
 function App() {
   const isLoged = () => {
-    return false;
+    return localStorage.getItem("microBlogToken");
   };
 
   return (

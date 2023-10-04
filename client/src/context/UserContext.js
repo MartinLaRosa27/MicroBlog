@@ -19,18 +19,19 @@ export const UserContext = ({ children }) => {
   };
 
   const autenticacionUser = async (values) => {
-    let token = false;
+    let result = false;
     await axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/autenticacion-user`, values)
       .then((res) => {
         if (res.data.result == "success") {
-          token = res.data.token;
+          localStorage.setItem("microBlogToken", res.data.token);
+          result = true;
         }
       })
       .catch((e) => {
         console.log(e);
       });
-    return token;
+    return result;
   };
 
   return (

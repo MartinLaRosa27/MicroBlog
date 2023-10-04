@@ -2,6 +2,11 @@ import logo from "../../assets/logo.svg";
 import { NavLink } from "react-router-dom";
 
 function Header() {
+  const logout = () => {
+    localStorage.removeItem("microBlogToken");
+    window.location.reload();
+  };
+
   return (
     <header className="navbar">
       <NavLink className="navbar__brand" to={"/"}>
@@ -17,6 +22,11 @@ function Header() {
           >
             Publicar
           </NavLink>
+        </li>
+        <li className="navbar__navigation-item">
+          <p className="navbar__link" onClick={() => logout()}>
+            Salir
+          </p>
         </li>
       </ul>
     </header>

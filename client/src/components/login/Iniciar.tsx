@@ -21,7 +21,7 @@ function Iniciar({ setShowIniciar }: Props) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (await autenticacionUser({ email, password })) {
-      alert("ok");
+      window.location.reload();
     } else {
       alert("Las credenciales ingresadas no coinciden");
     }
