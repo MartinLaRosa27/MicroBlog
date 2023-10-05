@@ -8,7 +8,7 @@ export const UserContext = ({ children }) => {
     await axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/guardar-user`, values)
       .then((res) => {
-        if (res.data.result == "success") {
+        if (res.data.result === "success") {
           result = true;
         }
       })
@@ -23,7 +23,7 @@ export const UserContext = ({ children }) => {
     await axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/autenticacion-user`, values)
       .then((res) => {
-        if (res.data.result == "success") {
+        if (res.data.result === "success") {
           localStorage.setItem("microBlogToken", res.data.token);
           result = true;
         }

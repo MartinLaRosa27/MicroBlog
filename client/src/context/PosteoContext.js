@@ -8,7 +8,7 @@ export const PosteoContext = ({ children }) => {
     await axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/todos-posteos`)
       .then((res) => {
-        if (res.data.result == "success") {
+        if (res.data.result === "success") {
           result = res.data.posteos;
         }
       })
@@ -23,7 +23,7 @@ export const PosteoContext = ({ children }) => {
     await axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/guardar-posteo`, values)
       .then((res) => {
-        if (res.data.result == "success") {
+        if (res.data.result === "success") {
           result = true;
         }
       })
@@ -38,7 +38,7 @@ export const PosteoContext = ({ children }) => {
     await axios
       .delete(`${process.env.REACT_APP_BACKEND_URL}/eliminar-posteo/${id}`)
       .then((res) => {
-        if (res.data.result == "success") {
+        if (res.data.result === "success") {
           result = true;
         }
       })
@@ -53,7 +53,7 @@ export const PosteoContext = ({ children }) => {
     await axios
       .put(`${process.env.REACT_APP_BACKEND_URL}/editar-posteo/${id}`, values)
       .then((res) => {
-        if (res.data.result == "success") {
+        if (res.data.result === "success") {
           result = true;
         }
       })
