@@ -6,7 +6,11 @@ export const PosteoContext = ({ children }) => {
   const todosPosteos = async () => {
     let result = [];
     await axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/todos-posteos`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/todos-posteos`, {
+        headers: {
+          auth: localStorage.getItem("microBlogToken"),
+        },
+      })
       .then((res) => {
         if (res.data.result === "success") {
           result = res.data.posteos;
@@ -21,7 +25,11 @@ export const PosteoContext = ({ children }) => {
   const guardarPosteo = async (values) => {
     let result = false;
     await axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/guardar-posteo`, values)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/guardar-posteo`, values, {
+        headers: {
+          auth: localStorage.getItem("microBlogToken"),
+        },
+      })
       .then((res) => {
         if (res.data.result === "success") {
           result = true;
@@ -36,7 +44,11 @@ export const PosteoContext = ({ children }) => {
   const eliminarPosteo = async (id) => {
     let result = false;
     await axios
-      .delete(`${process.env.REACT_APP_BACKEND_URL}/eliminar-posteo/${id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/eliminar-posteo/${id}`, {
+        headers: {
+          auth: localStorage.getItem("microBlogToken"),
+        },
+      })
       .then((res) => {
         if (res.data.result === "success") {
           result = true;
@@ -51,7 +63,11 @@ export const PosteoContext = ({ children }) => {
   const editarPosteo = async (id, values) => {
     let result = false;
     await axios
-      .put(`${process.env.REACT_APP_BACKEND_URL}/editar-posteo/${id}`, values)
+      .put(`${process.env.REACT_APP_BACKEND_URL}/editar-posteo/${id}`, values, {
+        headers: {
+          auth: localStorage.getItem("microBlogToken"),
+        },
+      })
       .then((res) => {
         if (res.data.result === "success") {
           result = true;

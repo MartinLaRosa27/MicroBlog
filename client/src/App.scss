@@ -90,6 +90,7 @@ body {
   background-color: #f3f6f6;
   margin-bottom: 10px;
   border-radius: 12px;
+  border: 2px solid gray;
 }
 
 .form__textarea {
@@ -101,6 +102,8 @@ body {
   margin-bottom: 10px;
   height: 200px;
   border-radius: 12px;
+  border: 2px solid gray;
+  resize: none;
 }
 
 .form__submit {
