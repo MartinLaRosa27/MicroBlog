@@ -1,5 +1,5 @@
-Flask==2.3.3
-Flask-MySQLdb==1.0.1
-PyJWT==2.8.0
-passlib==1.7.4
-python-dotenv==1.0.0
+Flask
+Flask-MySQLdb
+PyJWT
+passlib
+python-dotenv
