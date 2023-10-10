@@ -1,5 +1,4 @@
 import { useUserContext } from "../../context/UserContext";
-import { useHistory } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
@@ -8,7 +7,6 @@ interface Props {
 }
 
 function Registrarse({ setShowIniciar }: Props) {
-  const history = useHistory();
   const { guardarUser } = useUserContext();
 
   return (
@@ -20,10 +18,7 @@ function Registrarse({ setShowIniciar }: Props) {
           passwordAux: "",
         }}
         onSubmit={async (value) => {
-          if (await guardarUser(value)) {
-            alert("Usuario registrado correctamente");
-            history.push("/");
-          }
+          await guardarUser(value);
         }}
         validationSchema={Yup.object({
           email: Yup.string().required("El email es requerido."),
